@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 
-const CardCategoria = styled.div`
+const CardMenu = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,27 +38,23 @@ const SpanBtn = styled.div`
     
 `
 
-const Categoria = ({id, nombre, precio, categoria, desc, img}) => {
-
-
+const RecomendadosItems = ({id, nombre, precio, img}) => {
   return (
-    <CardCategoria>
-        <div>
+    <CardMenu>
+      <div>
             <h3>{nombre}</h3>
         </div>
         <div>
-            <ImgCat src={img} alt="imgCat" />
-            <p>{desc}</p>
+            <ImgCat src={img} alt="imgRec" />
+           
             <SpanBtn>
                 <span>ARS {precio}</span>
                 <button>Agregar</button>
             </SpanBtn>
         </div>
 
-
-
-    </CardCategoria>
+    </CardMenu>
   )
 }
 
-export default Categoria
+export default RecomendadosItems

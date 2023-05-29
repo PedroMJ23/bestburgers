@@ -1,7 +1,9 @@
 import React from "react";
 import { HomeDiv, ImgHome, PortadaHome, TextHome } from "./HomeCss";
-import Categorias from "../Categorias/Categorias";
-import Menu from "../Manu/Menu";
+import Categorias from "../../Components/Categorias/Categorias";
+import Menu from "../../Components/Manu/Menu";
+//import Cat2 from "../Cat2/Cat2";
+import Recomendados from "../../Components/Recomendados/Recomendados";
 
 const Home = () => {
   return (
@@ -35,8 +37,10 @@ const Home = () => {
           </p>
         </TextHome>
       </PortadaHome>
+      <Recomendados/>
+      {/*<Cat2/>*/}
       <Categorias />
-      <Menu />
+     <Menu />
     </HomeDiv>
   );
 };

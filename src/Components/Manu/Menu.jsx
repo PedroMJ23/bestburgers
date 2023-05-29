@@ -1,7 +1,8 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import products from '../../Data/Products'
+//import products from '../../Data/Products'
 import MenuItem from './MenuItem'
+import { useSelector } from 'react-redux'
 
 const MenuDiv = styled.div`
     display: flex;
@@ -22,10 +23,13 @@ const MenuDiv = styled.div`
 `
 
 const Menu = ({children}) => {
+
+  const productos = useSelector( state => state.productos.productos)
+
   return (<>
-  <h2>Nuetro Menú</h2>
+  <h2>Nuestro Menú</h2>
   
-  <MenuDiv>{products.map((item)=> <MenuItem key={item.id} {...item} />  )}</MenuDiv>
+  <MenuDiv>{productos.map((item)=> <MenuItem key={item.id} {...item} />  )}</MenuDiv>
   <button>Ver Más</button>
   </>
    

@@ -10,7 +10,6 @@ function App() {
       <Layout>
         <Navbar />
         <GlobalRoutes />
-        <h2>Ofertas</h2>
         <Footer />
       </Layout>
 

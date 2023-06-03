@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import products from "../../Data/Products";
+import { CantidadDeProductosTotales, ProductosPorCategoria } from "../../Data/Products";
+
 
 const initialState = {
-    productos: products,
-    totalProductos: products.length
+    productos: ProductosPorCategoria,
+    totalProductos: CantidadDeProductosTotales
     }
 
 export const productosSlice = createSlice(

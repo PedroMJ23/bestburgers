@@ -25,9 +25,10 @@ const CategoriasDiv = styled.div`
   }
 `;
 
-const Categorias = ({ children }) => {
+const Categorias = () => {
 
 const categorias = useSelector(state => state.categorias.categorias);
+
   return (
     <>
       <h2>Categorias</h2>

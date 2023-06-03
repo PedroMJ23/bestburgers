@@ -1,6 +1,7 @@
 import React from "react";
+import { useDispatch  } from "react-redux";
 import { styled } from "styled-components";
-
+import { seleccCategorias } from "../../Redux/categorias/categoriasSlice";
 
 const CardCategoria = styled.div`
   display: flex;
@@ -31,14 +32,12 @@ const ImgCat = styled.img`
   }
 `;
 const imgYSpan = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-border: 3px solid red;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 3px solid red;
 `;
-
 
 const SpanBtn = styled.div`
   display: flex;
@@ -58,12 +57,18 @@ const btnCat = styled.button`
   border-radius: 5px;
   border: 1px transparent;
   background-color: #ea5a1d;
-
 `;
 
 const Categoria = ({ id, nombre, categoria, desc, img }) => {
+  /*const categoriaSelecc = useSelector(
+    (state) => state.categorias.categoriaSeleccionada
+  );*/
+
+  const dispatch = useDispatch();
+ 
+ 
   return (
-    <CardCategoria>
+    <CardCategoria onClick={()=>{ dispatch(seleccCategorias(categoria)) }}>
       <div>
         <h3>{nombre}</h3>
       </div>

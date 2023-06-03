@@ -6,7 +6,7 @@ const products = [
     id: 1,
     nombre: "La clásica",
     precio: 1200,
-    categoria: "clasicas",
+    categoria: "Clásicas",
     desc: "Hamburbuesa simple con cheddar",
     img: hamburguesas1,
   },
@@ -14,7 +14,7 @@ const products = [
     id: 2,
     nombre: "Clásica Plus",
     precio: 1500,
-    categoria: "clasicas",
+    categoria: "Clásicas",
     desc: "Hamburguesa simple con cheddar, panceta y cebolla",
     img: hamburguesas1,
   },
@@ -23,7 +23,7 @@ const products = [
     id: 3,
     nombre: "Clásica ultra",
     precio: 1700,
-    categoria: "clasicas",
+    categoria: "Clásicas",
     desc: "Hamburguesa simple con cheddar, panceta, cebolla y barbacoa",
     img: hamburguesas1,
   },
@@ -31,7 +31,7 @@ const products = [
     id: 4,
     nombre: "La completa",
     precio: 1800,
-    categoria: "clasicas",
+    categoria: "Clásicas",
     desc: "Hamburguesa simple con cheddar, panceta, cebolla, tomate y lechuga",
     img:hamburguesas1,
   },
@@ -39,7 +39,7 @@ const products = [
     id:5,
     nombre:'Doble clásica',
     precio: 2000,
-    categoria: "dobles",
+    categoria: "Dobles",
     desc: "Hamburguesa doble carne, doble cheddar",
     img: undefined
   },
@@ -47,7 +47,7 @@ const products = [
     id: 6,
     nombre:"Doble con panceta y cebolla",
     precio: 2100,
-    categoria: "dobles",
+    categoria: "Dobles",
     desc: "Hamburguesa doble carne, doble cheddar con panceta y cebolla",
     img: undefined
   },
@@ -55,7 +55,7 @@ const products = [
     id:7,
     nombre:"La Barbacoa",
     precio: 2300,
-    categoria: "dobles",
+    categoria: "Dobles",
     desc: "Hamburguesa doble carne, cheddar, panceta, cebolla caramelizada y salsa de barbacoa",
     img: undefined
   },
@@ -63,7 +63,7 @@ const products = [
     id:8,
     nombre: "Doble completa",
     precio:2500,
-    categoria:"dobles",
+    categoria:"Dobles",
     desc: "Hamburguesa doble carne, cheddar, panceta, cebolla, lechuga, tomate y huevo",
     img: undefined
   },
@@ -71,7 +71,7 @@ const products = [
     id:9,
     nombre: "Plus Ultra",
     precio: 1500,
-    categoria: "pequeños",
+    categoria: "Pequeños",
     desc: "Hamburguesa simple con cheddar y papitas fritas",
     img:undefined
 
@@ -80,7 +80,7 @@ const products = [
     id: 10,
     nombre: "Plus Mega",
     precio: 2000,
-    categoria: "pequeños",
+    categoria: "Pequeños",
     desc: "Hamburguesa simple con cheddar, papitas fritas y patitas de pollo",
     img: undefined
   }
@@ -92,6 +92,19 @@ export const arrayDeCat = ()=>{
 
 };
 //arrayDeCat();
+
+export const ProductosPorCategoria = products.reduce((acc, product) => {
+  if (!acc[product.categoria]) {
+    acc[product.categoria] = [];
+  }
+
+  acc[product.categoria] = [...acc[product.categoria], product];
+
+  return acc;
+}, {});
+
+export const CantidadDeProductosTotales = products.length;
+
 
 export default products;
 

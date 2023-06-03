@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import { HomeDiv, ImgHome, PortadaHome, TextHome } from "./HomeCss";
 import Categorias from "../../Components/Categorias/Categorias";
 import Menu from "../../Components/Manu/Menu";
 //import Cat2 from "../Cat2/Cat2";
 import Recomendados from "../../Components/Recomendados/Recomendados";
+import CategoriasBusqueda from "../../Components/CategoriasBusqueda/CategoriasBusqueda";
 
 const Home = () => {
+  const productRef = useRef();
+
+  const doScroll = () => {
+    window.scrollTo(
+      productRef.current.getBoundingClientRect().x,
+      productRef.current.getBoundingClientRect().y
+    );
+  };
+
   return (
-    <HomeDiv>
+    <HomeDiv >
       <h1>Bienvenidos a Best Burguers LP! </h1>
       <PortadaHome>
         <ImgHome
@@ -37,10 +47,14 @@ const Home = () => {
           </p>
         </TextHome>
       </PortadaHome>
-      <Recomendados/>
+      <CategoriasBusqueda doScroll={doScroll} />
+      <Recomendados />
       {/*<Cat2/>*/}
+      
       <Categorias />
-     <Menu />
+      <div ref={productRef}>
+      <Menu />
+      </div>
     </HomeDiv>
   );
 };

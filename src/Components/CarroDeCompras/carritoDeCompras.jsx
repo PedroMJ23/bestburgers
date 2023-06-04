@@ -89,7 +89,7 @@ const CarritoDeCompras = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [100]);
+  }, []);
 
   const handleOverlayClick = () => {
     dispatch(verElCarrito());

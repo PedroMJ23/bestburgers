@@ -17,8 +17,9 @@ const Home = () => {
   };
 
   return (
-    <HomeDiv >
+    <HomeDiv>
       <h1>Bienvenidos a Best Burguers LP! </h1>
+
       <PortadaHome>
         <ImgHome
           src={require("../../Assets/Images/hamburguesas-a-domicilio-980x653.jpg")}
@@ -47,13 +48,16 @@ const Home = () => {
           </p>
         </TextHome>
       </PortadaHome>
+
       <CategoriasBusqueda doScroll={doScroll} />
+
       <Recomendados />
       {/*<Cat2/>*/}
-      
+
       <Categorias />
+
       <div ref={productRef}>
-      <Menu />
+        <Menu />
       </div>
     </HomeDiv>
   );

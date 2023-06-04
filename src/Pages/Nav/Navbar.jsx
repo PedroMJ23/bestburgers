@@ -25,7 +25,6 @@ const NavbarContainer = styled.nav`
   color: white;
   padding: 10px;
   width: 100%;
-  
 `;
 
 const Logo = styled.div`
@@ -48,7 +47,6 @@ const IconLogIn = styled.img`
 const Menu = styled.ul`
   display: flex;
   list-style: none;
-  
 `;
 
 const MenuItem = styled(Link)`
@@ -71,12 +69,8 @@ const MenuItem = styled(Link)`
     animation: ${slide} 0.3s ease-in-out;
   }
   @media only screen and (max-width: 767px) {
-display: none;
-
-
-
-
-}
+    display: flex;
+  }
 `;
 const CartImg = styled.img`
   height: 25px;
@@ -89,27 +83,25 @@ const Navbar = () => {
     <NavbarContainer>
       <Logo>
         <Icon src="logo.png" alt="Logo" />
-        <h2>Best Burguers LP!</h2>
       </Logo>
+      
       <Menu>
         <MenuItem to="/">Home</MenuItem>
+        <MenuItem to="/menu">Menu</MenuItem>
         <MenuItem to="login">
-          Login{" "}
-          <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />{" "}
+          Login
+          <IconLogIn
+            src={require("../../Assets/Images/acceso.png")}
+            alt=""
+          />
         </MenuItem>
 
-        <MenuItem>
+        <MenuItem to='/carrito' > 
           <CartImg
             src={require("../../Assets/Images/carrito-de-compras.png")}
             alt="Cart"
           />
         </MenuItem>
-        
-        <img
-            src={require("../../Assets/Images/carrito-de-compras.png")}
-    
-            alt="Cart" className="img_menu"
-          />
       </Menu>
     </NavbarContainer>
   );

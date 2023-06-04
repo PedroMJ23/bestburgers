@@ -8,11 +8,11 @@ const CardCategoria = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 130px;
-  height: 160px;
+  width: 150px;
+  height: 110px;
   border-radius: 8px;
   //background-color:#8E44AD ;
-  border: 1px solid black;
+  border: 1px solid black; 
   gap: 10px;
   margin: 10px;
   @media only screen and (max-width: 767px) {
@@ -31,33 +31,28 @@ const ImgCat = styled.img`
     height: 40px;
   }
 `;
-const imgYSpan = styled.div`
+const ImgYSpan = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 3px solid red;
+  //border: 3px solid red;
 `;
-
+/*
 const SpanBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  button {
+ 
+`;
+const BtnCat = styled.button`
     height: 20px;
     width: 50px;
     border-radius: 5px;
     border: 1px transparent;
     background-color: #ea5a1d;
-  }
-`;
-const btnCat = styled.button`
-  height: 20px;
-  width: 50px;
-  border-radius: 5px;
-  border: 1px transparent;
-  background-color: #ea5a1d;
-`;
+  `;
+  */
 
 const Categoria = ({ id, nombre, categoria, desc, img }) => {
   /*const categoriaSelecc = useSelector(
@@ -72,12 +67,10 @@ const Categoria = ({ id, nombre, categoria, desc, img }) => {
       <div>
         <h3>{nombre}</h3>
       </div>
-      <imgYSpan>
+      <ImgYSpan>
         <ImgCat src={img} alt="imgCat" />
-        <SpanBtn>
-          <button>Ver</button>
-        </SpanBtn>
-      </imgYSpan>
+        
+      </ImgYSpan>
     </CardCategoria>
   );
 };

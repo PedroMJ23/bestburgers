@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { styled } from 'styled-components';
+import { añadirAlCarrito } from '../../Redux/carrito/carritoSlice';
 
 
 const CardMenu = styled.div`
@@ -40,6 +42,7 @@ const SpanBtn = styled.div`
 
 const MenuItem = ({id, nombre, precio, categoria, desc, img}) => {
 
+const dispatch = useDispatch();
 
   return (
     <CardMenu>
@@ -51,7 +54,7 @@ const MenuItem = ({id, nombre, precio, categoria, desc, img}) => {
             <p>{desc}</p>
             <SpanBtn>
                 <span>ARS {precio}</span>
-                <button>Agregar</button>
+                <button onClick={()=> dispatch(añadirAlCarrito({id, nombre, precio, categoria, desc, img}))} >Agregar</button>
             </SpanBtn>
         </div>
 

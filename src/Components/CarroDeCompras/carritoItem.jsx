@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { styled } from "styled-components";
+import { añadirAlCarrito, eliminarDelCarrito } from "../../Redux/carrito/carritoSlice";
 
 const CarritoItemDiv = styled.div`
   display: flex;
@@ -7,8 +9,8 @@ const CarritoItemDiv = styled.div`
   align-items: center;
   justify-content: center;
   padding: 5px;
-  width: 320px;
-  height: 280px;
+  min-width: 250px;
+  height: 70px;
   border: 1px solid white;
   border-radius: 10px;
   margin: 15px 15px;
@@ -19,32 +21,66 @@ const CarritoItemDiv = styled.div`
 `;
 
 const CarritoImg = styled.img`
-  height: 180px;
-  width: 250px;
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
 `;
 const ImgSpanP = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+const DivSpanYBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+  button{
+    height: 35px;
+    width: 35px;
+    border-radius: 8px;
+  }
+`;
 
-`
+const CarritoItem = ({ id, nombre, precio, categoria, desc, img, cantidad }) => {
+  
+  const dispatch = useDispatch();
 
-const CarritoItem = ({ id, nombre, precio, categoria, desc, img }) => {
+  const quitarItems = () => {
+    if (cantidad === 1) {
+      const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este elemento del carrito?");
+      if (confirmDelete) {
+        dispatch(eliminarDelCarrito(id));
+      }
+    } else {
+      dispatch(eliminarDelCarrito(id));
+    }
+  };
+
+
+  
+ 
+
   return (
+    <>
     <CarritoItemDiv>
-      <div>
-        <h3>{nombre}</h3>
-      </div>
       <ImgSpanP>
         <CarritoImg src={img} alt="imgCat" />
-        <p>{desc}</p>
-        <div>
-          <span>ARS {precio}</span>
-          <button>Quitar</button>
-        </div>
+        <p>{nombre}</p>
+        <span>ARS {precio}</span>
+        <DivSpanYBtn>
+          <button onClick={quitarItems} >-</button>
+          <span>ARS {cantidad}</span> 
+         
+          <button onClick={()=>dispatch(añadirAlCarrito( {id, nombre, precio, categoria, desc, img, cantidad} ))} >+</button>
+        </DivSpanYBtn>  
       </ImgSpanP>
     </CarritoItemDiv>
+    
+    </>
+    
   );
 };
 

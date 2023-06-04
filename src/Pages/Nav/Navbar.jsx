@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import { verElCarrito } from "../../Redux/carrito/carritoSlice";
+import CarritoDeCompras from "../../Components/CarroDeCompras/carritoDeCompras";
 
 const slide = keyframes`
   0% {
@@ -78,29 +81,50 @@ const CartImg = styled.img`
   margin: 2px;
 `;
 
+const BubbleSpan = styled.span`
+  background-color: grey;
+  border-radius: 50px;
+  border: 1px solid beige;
+  padding: 5px;
+  height: 18px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 5px;
+  right: 15px;
+`;
+
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const { hidden } = useSelector((state) => state.carrito);
+  const cantidadItemsEnELcarrito = useSelector(
+    (state) => state.carrito.itemsDelCarrito
+  ).reduce((acc, item) => (acc += item.cantidad), 0);
+
   return (
     <NavbarContainer>
       <Logo>
         <Icon src="logo.png" alt="Logo" />
       </Logo>
-      
+
       <Menu>
         <MenuItem to="/">Home</MenuItem>
         <MenuItem to="/menu">Menu</MenuItem>
         <MenuItem to="login">
           Login
-          <IconLogIn
-            src={require("../../Assets/Images/acceso.png")}
-            alt=""
-          />
+          <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
         </MenuItem>
 
-        <MenuItem to='/carrito' > 
+        <MenuItem onClick={() => dispatch(verElCarrito())}>
           <CartImg
             src={require("../../Assets/Images/carrito-de-compras.png")}
             alt="Cart"
           />
+          <BubbleSpan>{cantidadItemsEnELcarrito}</BubbleSpan>
+          {!hidden && <CarritoDeCompras />}
         </MenuItem>
       </Menu>
     </NavbarContainer>

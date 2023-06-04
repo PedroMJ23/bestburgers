@@ -1,32 +1,132 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { styled } from "styled-components";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { css, styled } from "styled-components";
 import CarritoItem from "./carritoItem";
-
-
+import { verElCarrito } from "../../Redux/carrito/carritoSlice";
 
 const CarritoDiv = styled.div`
- display: flex;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  //height: 100vh;
   background-color: #6687a9;
   color: white;
+  //flex-wrap: wrap;
+  flex-direction: column;
+  width: 360px;
+  background-color: #2b547e;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  z-index: 99;
+  height: calc(100vh - 6rem);
+  padding: 2rem;
+  //background-color: var(--gray-bg);
+  border-radius: 0 0 0 1rem;
+  box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.3);
+  cursor: auto;
+  button {
+    cursor: pointer;
+
+
+    &:disabled {
+      background-image: none; 
+      cursor: not-allowed; 
+
+      &:hover {
+        background-image: url("../../Assets/Others/prohibido.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 20px 20px; 
+      }
+    }
+  }
+`;
+const ModalOverlayStyled = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: calc(100vw - 360px);
+  height: 100vh;
+  margin-top: 57px;
+
+  ${({ isHidden }) =>
+    !isHidden &&
+    css`
+      backdrop-filter: blur(4px);
+    `}
+`;
+
+const ItemsDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-
-
-`
+  overflow-y: scroll;
+  //overflow: scroll;
+  width: 340px;
+  height: 90%;
+`;
 
 const CarritoDeCompras = () => {
   const arraydecarrito = useSelector((state) => state.carrito.itemsDelCarrito);
-  console.log(arraydecarrito);
+  //console.log(arraydecarrito);
+  const dispatch = useDispatch();
+  const { itemsDelCarrito, costoDeEnvio, hidden } = useSelector(
+    (state) => state.carrito
+  );
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 25) {
+      dispatch(verElCarrito());
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [100]);
+
+  const handleOverlayClick = () => {
+    dispatch(verElCarrito());
+  };
+
+  const precioTotal = arraydecarrito.reduce(
+    (acc, item) => (acc += item.precio * item.cantidad),
+    0
+  );
+
+  const isCarritoEmpty = arraydecarrito.length === 0;
 
   return (
     <>
-      <CarritoDiv> {
-        arraydecarrito.map( item => <CarritoItem key={item.id} {...item}/> )
-
-        } </CarritoDiv>
+      {!hidden && (
+        <ModalOverlayStyled onClick={handleOverlayClick} isHidden={hidden} />
+      )}
+      {!hidden && (
+        <CarritoDiv onClick={() => dispatch(verElCarrito(true))}>
+          <h3>Tus compras:</h3>
+          <ItemsDiv>
+            {arraydecarrito.length ? (
+              itemsDelCarrito.map((item) => (
+                <CarritoItem key={item.id} {...item} />
+              ))
+            ) : (
+              <p>No has comprado nada</p>
+            )}
+          </ItemsDiv>
+          <p>Subtotal: {precioTotal}</p>
+          <p>Envio: {costoDeEnvio}</p>
+          <span>-------</span>
+          <span>Ttotal:{precioTotal + costoDeEnvio}</span>
+          <button disabled={ isCarritoEmpty} >Finalizar compra</button>
+        </CarritoDiv>
+        
+      )}
     </>
   );
 };

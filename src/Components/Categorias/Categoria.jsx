@@ -38,26 +38,10 @@ const ImgYSpan = styled.div`
   flex-direction: column;
   //border: 3px solid red;
 `;
-/*
-const SpanBtn = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
- 
-`;
-const BtnCat = styled.button`
-    height: 20px;
-    width: 50px;
-    border-radius: 5px;
-    border: 1px transparent;
-    background-color: #ea5a1d;
-  `;
-  */
+
 
 const Categoria = ({ id, nombre, categoria, desc, img }) => {
-  /*const categoriaSelecc = useSelector(
-    (state) => state.categorias.categoriaSeleccionada
-  );*/
+
 
   const dispatch = useDispatch();
  

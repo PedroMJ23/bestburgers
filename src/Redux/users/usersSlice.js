@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     userAut: null,
-    hiddenMenu: true
-}
+    }
 
 const userSlice = createSlice({
 
@@ -15,20 +14,15 @@ const userSlice = createSlice({
                 ...state,
                 userAut: action.payload
             }
-        },
-        verOcultarMenu: state => {
-            return{
-                ...state,
-                hiddenMenu: !state.hiddenMenu
-            }
         }
 
     }
 
 })
 
-export const { setUserAut, verOcultarMenu} = userSlice.actions;
+export const { setUserAut } = userSlice.actions;
 
 export default userSlice.reducer;
+
 
 

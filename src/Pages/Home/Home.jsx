@@ -2,9 +2,10 @@ import React, { useRef } from "react";
 import { HomeDiv, ImgHome, PortadaHome, TextHome } from "./HomeCss";
 import Categorias from "../../Components/Categorias/Categorias";
 import Menu from "../../Components/Manu/Menu";
-//import Cat2 from "../Cat2/Cat2";
 import Recomendados from "../../Components/Recomendados/Recomendados";
 import CategoriasBusqueda from "../../Components/CategoriasBusqueda/CategoriasBusqueda";
+import { useSelector } from "react-redux";
+
 
 const Home = () => {
   const productRef = useRef();
@@ -16,10 +17,23 @@ const Home = () => {
     );
   };
 
+  const usuarioAut = useSelector((state) => state.user.userAut);
+  
+
   return (
     <HomeDiv>
-      <h1>Bienvenidos a Best Burguers LP! </h1>
-
+      <h1>
+        
+        {usuarioAut && usuarioAut.username ? (
+          <>
+           Bienvenido {usuarioAut.username} a Best Burguers LP!
+          </>
+        ) :
+        <>
+           Bienvenido  a Best Burguers LP!
+          </>
+        }
+      </h1>
       <PortadaHome>
         <ImgHome
           src={require("../../Assets/Images/hamburguesas-a-domicilio-980x653.jpg")}

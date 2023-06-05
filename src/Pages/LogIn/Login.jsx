@@ -1,9 +1,8 @@
-//import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Register from "../Register/Register";
-//import PageContext from "../Context/Context";
-//import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { setUserAut } from "../../Redux/users/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -56,64 +55,71 @@ const LoginButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px solid white;
-`;
 
 const LoginFormContainer = () => {
-  //const { aut, form, handleChange, handleSubmit } = useContext(PageContext);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userAut = useSelector((state) => state.user.userAut);
 
-  //const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
 
- /* useEffect(() => {
-    if (aut) {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+if(!formData.username || !formData.password){
+  alert('Debes rellenar todos los campos')
+}else{
+  dispatch(setUserAut(formData));
+}
+   
+  };
+
+  useEffect(() => {
+       if (userAut) {
       navigate("/");
     }
-  }, [navigate, aut]);*/
+  }, [navigate, userAut]);
 
   return (
-    <LoginForm>
+    <LoginForm onSubmit={handleSubmit}>
       <h2 style={{ fontSize: "2rem", marginBottom: "30px" }}>Iniciar Sesión</h2>
-      <LoginLabel htmlFor="text" style={{ fontSize: "1.2rem" }}>
+      <LoginLabel htmlFor="username" style={{ fontSize: "1.2rem" }}>
         Usuario:
       </LoginLabel>
       <LoginInput
         type="text"
         id="username"
         name="username"
-        //value={form.username}
+        value={formData.username}
         placeholder="Ingresa tu nombre de usuario"
-        //onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       />
 
-      <LoginLabel htmlFor="password" style={{ fontSize: "1.2rem" }}>
-        Password:
-      </LoginLabel>
-      <LoginInput
-        type="password"
-        id="password"
-        name="password"
-        //value={form.password}
-        placeholder="Ingresa tu contraseña"
-        //onChange={(e) => handleChange(e)}
-      />
+<LoginLabel htmlFor="password" style={{ fontSize: "1.2rem" }}>
+  Password:
+</LoginLabel>
+<LoginInput
+  type="password"
+  id="password"
+  name="password"
+  value={formData.password}
+  placeholder="Ingresa tu contraseña"
+  onChange={handleChange}
+/>
 
-      <LoginButton type="submit" 
-      //onClick={(e) => handleSubmit(e)}
-      
-      >
-        Login
-      </LoginButton>
+<LoginButton type="submit" >Login/Registro</LoginButton>
 
-      <div style={{ fontSize: "1.2rem" }}>
-        ¿No tienes cuenta?
-        <StyledLink to="/registro" element={<Register/>}>
-          Regístrate
-        </StyledLink>
-      </div>
-    </LoginForm>
+
+</LoginForm>
   );
 };
 

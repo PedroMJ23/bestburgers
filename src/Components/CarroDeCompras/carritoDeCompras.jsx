@@ -110,8 +110,12 @@ const CarritoDeCompras = () => {
     const confirmarCompra = window.confirm("¿Desea finalizar la compra?");
     if (confirmarCompra) {
       dispatch(vaciarElCarrito());
+      alert('Gracias por tu compra!')
     }
+    dispatch(verElCarrito())
   };
+
+  const usuarioAut = useSelector((state) => state.user.userAut);
 
   return (
     <>
@@ -120,7 +124,16 @@ const CarritoDeCompras = () => {
       )}
       {!hidden && (
         <CarritoDiv onClick={() => dispatch(verElCarrito(true))}>
-          <h3>Tus compras:</h3>
+          <h3>
+        {usuarioAut && usuarioAut.username ? (
+          <>
+           Tus compras {usuarioAut.username}:
+          </>
+        ) :
+        <>
+          Tus compras:
+          </>
+        }</h3>
           <ItemsDiv>
             {arraydecarrito.length ? (
               itemsDelCarrito.map((item) => (

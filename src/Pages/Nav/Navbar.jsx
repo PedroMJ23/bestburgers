@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { verElCarrito } from "../../Redux/carrito/carritoSlice";
 import CarritoDeCompras from "../../Components/CarroDeCompras/carritoDeCompras";
+import { setUserAut } from "../../Redux/users/usersSlice";
+import { seleccCategorias } from "../../Redux/categorias/categoriasSlice";
 
 const slide = keyframes`
   0% {
@@ -105,19 +107,31 @@ const Navbar = () => {
     (state) => state.carrito.itemsDelCarrito
   ).reduce((acc, item) => (acc += item.cantidad), 0);
 
+  const { userAut } = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    dispatch(setUserAut(null));
+  };
   return (
     <NavbarContainer>
       <Logo>
-        <Icon src={require("../../Assets/Images/Hamburguesas.jpg")} alt=" Logo" />
+        <Icon src={require("../../Assets/Images/Hamburguesas.jpg")} alt="Logo" />
       </Logo>
 
       <Menu>
         <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/menu">Menu</MenuItem>
-        <MenuItem to="login">
-          Login
-          <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
-        </MenuItem>
+        <MenuItem to="/menu" onClick={()=>{ dispatch(seleccCategorias()) }} >Menu</MenuItem>
+        {userAut ? (
+          <MenuItem to="/" onClick={handleLogout}>
+            Cerrar Sesión
+            <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
+          </MenuItem>
+        ) : (
+          <MenuItem to="/login">
+            Login
+            <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
+          </MenuItem>
+        )}
 
         <MenuItem onClick={() => dispatch(verElCarrito())}>
           <CartImg

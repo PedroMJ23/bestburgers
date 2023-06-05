@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import categoriasReducer from "./categorias/categoriasSlice";
-
 import storage from 'redux-persist/lib/storage';
 import persistStore from "redux-persist/es/persistStore";
 import productosReducer from "./products/productosSlice";

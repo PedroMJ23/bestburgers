@@ -12,7 +12,7 @@ const MenuDiv = styled.div`
   flex-wrap: wrap;
 
   @media only screen and (max-width: 767px) {
-    width: 400px;
+    width: 98%;
     max-width: 95%;
     margin: 20px auto;
   }

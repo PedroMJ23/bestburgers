@@ -52,7 +52,6 @@ const Home = () => {
       <CategoriasBusqueda doScroll={doScroll} />
 
       <Recomendados />
-      {/*<Cat2/>*/}
 
       <Categorias />
 

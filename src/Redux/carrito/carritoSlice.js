@@ -37,7 +37,7 @@ const carritoSlice = createSlice({
         costoDeEnvio: resetCostoDeEnvio(state.itemsDelCarrito, precioEnvio),
       };
     },
-    vaciarElCarrito: (state) => {
+    vaciarElCarrito: state => {
       return {
         ...state,
         itemsDelCarrito: [],

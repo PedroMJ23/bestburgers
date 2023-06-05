@@ -11,8 +11,9 @@ export const HomeDiv = styled.div`
   }
   @media only screen and (max-width: 767px) {
     text-align: center;
-    width: auto;
+    width: 98%;
     margin: 15px auto;
+  
   }
 `;
 
@@ -22,12 +23,15 @@ export const PortadaHome = styled.div`
   justify-content: center;
   gap: 80px;
   width: 95%;
+  
 
   margin: 20px auto;
   @media only screen and (max-width: 767px) {
     gap: 10px;
     flex-direction: column;
     text-align: center;
+    
+    
   }
 `;
 
@@ -40,6 +44,7 @@ export const ImgHome = styled.img`
   @media only screen and (max-width: 767px) {
     height: 250px;
     width: 300px;
+   
   }
 
   //background-color: red;

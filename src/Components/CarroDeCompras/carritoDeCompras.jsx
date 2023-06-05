@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { css, styled } from "styled-components";
 import CarritoItem from "./carritoItem";
-import { verElCarrito } from "../../Redux/carrito/carritoSlice";
+import {
+  vaciarElCarrito,
+  verElCarrito,
+} from "../../Redux/carrito/carritoSlice";
 
 const CarritoDiv = styled.div`
   display: flex;
@@ -19,7 +22,10 @@ const CarritoDiv = styled.div`
   top: 60px;
   right: 0;
   z-index: 99;
-  height: calc(100vh - 6rem);
+  min-height: 250px;
+  max-height: calc(100vh - 6rem);
+  gap: 10px;
+
   padding: 2rem;
   //background-color: var(--gray-bg);
   border-radius: 0 0 0 1rem;
@@ -28,16 +34,15 @@ const CarritoDiv = styled.div`
   button {
     cursor: pointer;
 
-
     &:disabled {
-      background-image: none; 
-      cursor: not-allowed; 
+      background-image: none;
+      cursor: not-allowed;
 
       &:hover {
         background-image: url("../../Assets/Others/prohibido.png");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 20px 20px; 
+        background-size: 20px 20px;
       }
     }
   }
@@ -64,7 +69,6 @@ const ItemsDiv = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   overflow-y: scroll;
-  //overflow: scroll;
   width: 340px;
   height: 90%;
 `;
@@ -100,7 +104,14 @@ const CarritoDeCompras = () => {
     0
   );
 
-  const isCarritoEmpty = arraydecarrito.length === 0;
+  const carritoVacio = arraydecarrito.length === 0;
+
+  const finalizarLaCompra = () => {
+    const confirmarCompra = window.confirm("¿Desea finalizar la compra?");
+    if (confirmarCompra) {
+      dispatch(vaciarElCarrito());
+    }
+  };
 
   return (
     <>
@@ -122,10 +133,11 @@ const CarritoDeCompras = () => {
           <p>Subtotal: {precioTotal}</p>
           <p>Envio: {costoDeEnvio}</p>
           <span>-------</span>
-          <span>Ttotal:{precioTotal + costoDeEnvio}</span>
-          <button disabled={ isCarritoEmpty} >Finalizar compra</button>
+          <span>Total:{precioTotal + costoDeEnvio}</span>
+          <button disabled={carritoVacio} onClick={finalizarLaCompra}>
+            Finalizar compra
+          </button>
         </CarritoDiv>
-        
       )}
     </>
   );

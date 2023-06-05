@@ -69,10 +69,10 @@ const CarritoItem = ({ id, nombre, precio, categoria, desc, img, cantidad }) => 
       <ImgSpanP>
         <CarritoImg src={img} alt="imgCat" />
         <p>{nombre}</p>
-        <span>ARS {precio}</span>
+        <span>ARS ${precio}</span>
         <DivSpanYBtn>
           <button onClick={quitarItems} >-</button>
-          <span>ARS {cantidad}</span> 
+          <span>{cantidad}</span> 
          
           <button onClick={()=>dispatch(añadirAlCarrito( {id, nombre, precio, categoria, desc, img, cantidad} ))} >+</button>
         </DivSpanYBtn>  

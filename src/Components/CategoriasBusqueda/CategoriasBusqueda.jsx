@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { seleccCategorias } from "../../Redux/categorias/categoriasSlice";
+import { styled } from "styled-components";
+
+
+const CategoriasBusquedaDiv = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 10px;
+width: auto;
+margin: 15px auto;
+`
 
 const CategoriasBusqueda = ( { doScroll } ) => {
   const [value, setValue] = useState('');
@@ -31,6 +43,7 @@ const CategoriasBusqueda = ( { doScroll } ) => {
 
   return (
     <>
+    <CategoriasBusquedaDiv>
       <div>
         <p>¿Qué categorias estás buscando?</p>
       </div>
@@ -42,6 +55,7 @@ const CategoriasBusqueda = ( { doScroll } ) => {
         />
         <button onClick={(e) => handlesubmit(e, value)}>Buscar</button>
       </form>
+      </CategoriasBusquedaDiv>
     </>
   );
 };

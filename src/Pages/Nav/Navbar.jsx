@@ -39,7 +39,8 @@ const Logo = styled.div`
 const Icon = styled.img`
   width: 40px;
   height: 40px;
-  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 8px;
 `;
 const IconLogIn = styled.img`
   width: 20px;
@@ -107,7 +108,7 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <Logo>
-        <Icon src="logo.png" alt="Logo" />
+        <Icon src={require("../../Assets/Images/Hamburguesas.jpg")} alt=" Logo" />
       </Logo>
 
       <Menu>

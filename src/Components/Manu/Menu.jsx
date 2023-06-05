@@ -14,7 +14,6 @@ const MenuDiv = styled.div`
   flex-wrap: wrap;
 
   @media only screen and (max-width: 767px) {
-    width: 400px;
     max-width: 95%;
     margin: 20px auto;
   }
@@ -25,7 +24,6 @@ const Menu = ({ children }) => {
   const [limit, setLimit] = useState(limiteInicial);
 
   let productos = useSelector((state) => state.productos.productos);
-  
 
   const categoriaSeleccionada = useSelector(
     (state) => state.categorias.categoriaSeleccionada
@@ -57,27 +55,20 @@ const Menu = ({ children }) => {
         )}
       </MenuDiv>
 
-      {/*
-    <MenuDiv>{Object.entries(productos).map(([_categery, foods]) =>
-          foods.map(product => {
-            if (limit >= product.id || categoriaSeleccionada) {
-              return <MenuItem key={product.id} {...product} />;
-            } else return null;
-          })
-        )}</MenuDiv>
-        */}
-
-      {/*<MenuDiv>{productos.map((item)=> <MenuItem key={item.id} {...item} />  )}</MenuDiv>*/}
       {!categoriaSeleccionada && (
         <ButtonsDiv>
           <button
-            onClick={() => setLimit((valorPrevio) =>  valorPrevio - limiteInicial)}
+            onClick={() =>
+              setLimit((valorPrevio) => valorPrevio - limiteInicial)
+            }
             disabled={limit === limiteInicial}
           >
             Ver Menos
           </button>
           <button
-            onClick={() => setLimit((valorSiguente) => valorSiguente + limiteInicial)} 
+            onClick={() =>
+              setLimit((valorSiguente) => valorSiguente + limiteInicial)
+            }
             disabled={totalDeProductos <= limit}
           >
             Ver Más

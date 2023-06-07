@@ -34,7 +34,7 @@ const CategoriasBusqueda = ( { doScroll } ) => {
     );
     if (categoriaSelecc) {
       dispatch(seleccCategorias(categoriaSelecc));
-      console.log('cat find:', categoriaSelecc)
+      
       doScroll()
     } else {
       return "Categoria no encontrada";

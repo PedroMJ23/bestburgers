@@ -33,7 +33,7 @@ const MenuDiv = styled.div`
   }
 `;
 
-const Menu = ({ children }) => {
+const Menu = ({ doScroll ,children }) => {
   const limiteInicial = 6;
   const [limit, setLimit] = useState(limiteInicial);
 
@@ -64,6 +64,8 @@ const Menu = ({ children }) => {
           comidas.map((item) => {
             if (limit >= item.id || categoriaSeleccionada) {
               return <MenuItem key={item.id} {...item} />;
+              doScroll();
+              
             } else return null;
           })
         )}

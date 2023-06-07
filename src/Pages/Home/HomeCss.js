@@ -12,7 +12,7 @@ export const HomeDiv = styled.div`
   @media only screen and (max-width: 767px) {
     text-align: center;
     width: 98%;
-    margin: 15px auto;
+    margin: 60px auto;
   
   }
 `;

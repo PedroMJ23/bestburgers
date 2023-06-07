@@ -132,7 +132,7 @@ const Navbar = () => {
   const hiddenOnClickMenu = () => {
     window.scrollTo(0, 0);
     if (hiddenState === true) {
-      return;
+      dispatch(seleccCategorias());
     } else {
       dispatch(verElCarrito());
       dispatch(seleccCategorias());

@@ -70,7 +70,7 @@ const Home = () => {
       <Categorias />
 
       <div ref={productRef}>
-        <Menu />
+        <Menu doScroll={doScroll} />
       </div>
     </HomeDiv>
   );

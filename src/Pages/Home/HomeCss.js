@@ -5,7 +5,7 @@ export const HomeDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 30px auto;
+  margin: 60px auto;
   h1 {
     margin: 10px auto;
   }

@@ -16,8 +16,9 @@ const CardCategoria = styled.div`
   gap: 10px;
   margin: 10px;
   @media only screen and (max-width: 767px) {
-    height: 200px;
-    width: 280px;
+    height: 150;
+    width: 200px;
+    
   }
 `;
 const ImgCat = styled.img`

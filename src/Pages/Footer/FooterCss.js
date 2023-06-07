@@ -7,5 +7,5 @@ justify-content: center;
 background-color: #333;
 height: 80px;
 margin-top: 30px;
-
+    
 `

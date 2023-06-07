@@ -19,7 +19,7 @@ const slide = keyframes`
   100% {
     transform: scaleX(1);
     transform-origin: right;
-  }
+  } 
 `;
 
 const NavbarContainer = styled.nav`
@@ -30,6 +30,8 @@ const NavbarContainer = styled.nav`
   color: white;
   padding: 10px;
   width: 100%;
+  position: fixed;
+  z-index: 500;
 `;
 
 const Logo = styled.div`
@@ -78,6 +80,15 @@ const MenuItem = styled(Link)`
     display: flex;
   }
 `;
+const MenuItemLogo = styled(Link)`
+  display: flex;
+  margin-right: 20px;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  align-items: center;
+  justify-content: center;
+ `  
 const CartImg = styled.img`
   height: 25px;
   width: 25px;
@@ -108,26 +119,62 @@ const Navbar = () => {
   ).reduce((acc, item) => (acc += item.cantidad), 0);
 
   const { userAut } = useSelector((state) => state.user);
+  //console.log({hidden})
+  const hiddenState = useSelector((state) => state.carrito.hidden);
+  const hiddenOnClick = () => {
+    window.scrollTo(0, 0);
+    if (hiddenState === true) {
+      return;
+    } else {
+      dispatch(verElCarrito());
+    }
+  };
+  const hiddenOnClickMenu = () => {
+    window.scrollTo(0, 0);
+    if (hiddenState === true) {
+      return;
+    } else {
+      dispatch(verElCarrito());
+      dispatch(seleccCategorias());
+    }
+  };
+  const hiddenOnClickLog = () => {
+    if (hiddenState === true) {
+      dispatch(setUserAut(null));
+    } else {
+      dispatch(verElCarrito());
+      dispatch(setUserAut(null));
+    }
+  };
 
   const handleLogout = () => {
     dispatch(setUserAut(null));
   };
+
+  
   return (
     <NavbarContainer>
-      <Logo>
-        <Icon src={require("../../Assets/Images/Hamburguesas.jpg")} alt="Logo" />
-      </Logo>
+      <MenuItemLogo to="/" onClick={hiddenOnClick} >
+        <Icon
+          src={require("../../Assets/Images/Hamburguesas.jpg")}
+          alt="Logo"
+        />
+      </MenuItemLogo>
 
       <Menu>
-        <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/menu" onClick={()=>{ dispatch(seleccCategorias()) }} >Menu</MenuItem>
+        <MenuItem to="/" onClick={hiddenOnClick}>
+          Home
+        </MenuItem>
+        <MenuItem to="/menu" onClick={hiddenOnClickMenu}>
+          Menu
+        </MenuItem>
         {userAut ? (
-          <MenuItem to="/" onClick={handleLogout}>
+          <MenuItem to="/" onClick={hiddenOnClickLog}>
             Cerrar Sesión
             <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
           </MenuItem>
         ) : (
-          <MenuItem to="/login">
+          <MenuItem to="/login" onClick={hiddenOnClick}>
             Login
             <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
           </MenuItem>

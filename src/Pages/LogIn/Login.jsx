@@ -11,6 +11,8 @@ const LoginContainer = styled.div`
   height: 100vh;
   background-color: #6687a9;
   color: white;
+  margin-top: 60px;
+  //z-index: -1;
 `;
 
 const LoginForm = styled.form`
@@ -84,6 +86,7 @@ if(!formData.username || !formData.password){
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
        if (userAut) {
       navigate("/");
     }

@@ -5,13 +5,23 @@ import { styled } from "styled-components";
 import { useSelector } from "react-redux";
 //import CategoriasTodas from "../../Data/Categorias";
 
+const CategoriasPadre = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 60px auto 0px auto;
+  @media only screen and (max-width: 767px) {}
+  margin: 30px auto 0px auto;
+`
 
 const CategoriasDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 20px 40px;
+  margin: 20px auto;
+  
 
   :hover {
     background-color: #8e44ad;
@@ -30,14 +40,15 @@ const Categorias = () => {
 const categorias = useSelector(state => state.categorias.categorias);
 
   return (
-    <>
-      <h2>Categorias</h2>
-      <CategoriasDiv>
+    <CategoriasPadre>
+       <h2>Categorias</h2>
+           <CategoriasDiv>
+     
         {categorias.map((item) => (
           <Categoria key={item.id} {...item} />
         ))}
       </CategoriasDiv>
-    </>
+    </CategoriasPadre>
   );
 };
 

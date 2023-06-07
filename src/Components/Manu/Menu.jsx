@@ -5,6 +5,18 @@ import MenuItem from "./MenuItem";
 import { useSelector } from "react-redux";
 import { ButtonsDiv } from "../../Components/Manu/MenuCss";
 
+
+const DivMenuPadre = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+  margin-top: 60px;
+
+`
+
 const MenuDiv = styled.div`
   display: flex;
   align-items: center;
@@ -12,6 +24,8 @@ const MenuDiv = styled.div`
   flex-wrap: wrap;
   width: 98%;
   flex-wrap: wrap;
+  min-height: 600px;
+  
 
   @media only screen and (max-width: 767px) {
     max-width: 95%;
@@ -20,7 +34,7 @@ const MenuDiv = styled.div`
 `;
 
 const Menu = ({ children }) => {
-  const limiteInicial = 3;
+  const limiteInicial = 6;
   const [limit, setLimit] = useState(limiteInicial);
 
   let productos = useSelector((state) => state.productos.productos);
@@ -42,7 +56,7 @@ const Menu = ({ children }) => {
   useEffect(() => setLimit(limiteInicial), [categoriaSeleccionada]);
 
   return (
-    <>
+    <DivMenuPadre>
       <h2>Nuestro Menú</h2>
 
       <MenuDiv>
@@ -75,7 +89,7 @@ const Menu = ({ children }) => {
           </button>
         </ButtonsDiv>
       )}
-    </>
+    </DivMenuPadre>
   );
 };
 

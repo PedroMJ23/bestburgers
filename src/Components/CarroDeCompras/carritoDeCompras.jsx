@@ -25,6 +25,7 @@ const CarritoDiv = styled.div`
   min-height: 250px;
   max-height: calc(100vh - 6rem);
   gap: 10px;
+  
 
   padding: 2rem;
   //background-color: var(--gray-bg);
@@ -110,9 +111,9 @@ const CarritoDeCompras = () => {
     const confirmarCompra = window.confirm("¿Desea finalizar la compra?");
     if (confirmarCompra) {
       dispatch(vaciarElCarrito());
-      alert('Gracias por tu compra!')
+      alert("Gracias por tu compra!");
     }
-    dispatch(verElCarrito())
+    dispatch(verElCarrito());
   };
 
   const usuarioAut = useSelector((state) => state.user.userAut);
@@ -123,17 +124,14 @@ const CarritoDeCompras = () => {
         <ModalOverlayStyled onClick={handleOverlayClick} isHidden={hidden} />
       )}
       {!hidden && (
-        <CarritoDiv onClick={() => dispatch(verElCarrito(true))}>
+        <CarritoDiv onClick={() => dispatch(verElCarrito())}>
           <h3>
-        {usuarioAut && usuarioAut.username ? (
-          <>
-           Tus compras {usuarioAut.username}:
-          </>
-        ) :
-        <>
-          Tus compras:
-          </>
-        }</h3>
+            {usuarioAut && usuarioAut.username ? (
+              <>Tus compras {usuarioAut.username}:</>
+            ) : (
+              <>Tus compras:</>
+            )}
+          </h3>
           <ItemsDiv>
             {arraydecarrito.length ? (
               itemsDelCarrito.map((item) => (
@@ -143,10 +141,10 @@ const CarritoDeCompras = () => {
               <p>No has comprado nada</p>
             )}
           </ItemsDiv>
-          <p>Subtotal: {precioTotal}</p>
-          <p>Envio: {costoDeEnvio}</p>
+          <p>Subtotal: ${precioTotal}</p>
+          <p>Envio: ${costoDeEnvio}</p>
           <span>-------</span>
-          <span>Total:{precioTotal + costoDeEnvio}</span>
+          <span>Total:${precioTotal + costoDeEnvio}</span>
           <button disabled={carritoVacio} onClick={finalizarLaCompra}>
             Finalizar compra
           </button>

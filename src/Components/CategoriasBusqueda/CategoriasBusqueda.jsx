@@ -37,7 +37,7 @@ const CategoriasBusqueda = ( { doScroll } ) => {
       
       doScroll()
     } else {
-      return "Categoria no encontrada";
+      return console.log("Categoria no encontrada");
     }
   };
 

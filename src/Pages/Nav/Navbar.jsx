@@ -34,11 +34,6 @@ const NavbarContainer = styled.nav`
   z-index: 500;
 `;
 
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-`;
 
 const Icon = styled.img`
   width: 40px;
@@ -147,9 +142,8 @@ const Navbar = () => {
     }
   };
 
-  const handleLogout = () => {
-    dispatch(setUserAut(null));
-  };
+  //const handleLogout = () => {  dispatch(setUserAut(null));  };
+  
 
   
   return (

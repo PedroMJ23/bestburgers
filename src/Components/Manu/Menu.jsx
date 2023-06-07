@@ -33,7 +33,7 @@ const MenuDiv = styled.div`
   }
 `;
 
-const Menu = ({ doScroll ,children }) => {
+const Menu = ({ children }) => {
   const limiteInicial = 6;
   const [limit, setLimit] = useState(limiteInicial);
 
@@ -51,6 +51,7 @@ const Menu = ({ doScroll ,children }) => {
     productos = {
       [categoriaSeleccionada]: productos[categoriaSeleccionada],
     };
+      
   }
 
   useEffect(() => setLimit(limiteInicial), [categoriaSeleccionada]);
@@ -62,10 +63,8 @@ const Menu = ({ doScroll ,children }) => {
       <MenuDiv>
         {Object.entries(productos).map(([categoria, comidas]) =>
           comidas.map((item) => {
-            if (limit >= item.id || categoriaSeleccionada) {
-              return <MenuItem key={item.id} {...item} />;
-              doScroll();
-              
+            if (limit >= item.id || categoriaSeleccionada ) {
+              return <MenuItem key={item.id} {...item} /> ;
             } else return null;
           })
         )}

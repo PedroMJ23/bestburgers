@@ -1,4 +1,4 @@
-import Footer from "./Pages/Footer/Footer";
+import FooterMedias from "./Pages/Footer/FooterMedias";
 import Navbar from "./Pages/Nav/Navbar";
 import GlobalStylesCss from "./GlobalStyles/GLobalStyles";
 import Layout from "./Components/Layout/Layout";
@@ -10,7 +10,7 @@ function App() {
       <Layout>
         <Navbar />
         <GlobalRoutes />
-        <Footer />
+        <FooterMedias />
       </Layout>
 
       <GlobalStylesCss />

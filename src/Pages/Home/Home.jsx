@@ -63,14 +63,14 @@ const Home = () => {
         </TextHome>
       </PortadaHome>
 
-      <CategoriasBusqueda />
+      <CategoriasBusqueda doScroll={doScroll} />
 
       <Recomendados />
 
       <Categorias />
 
       <div ref={productRef} >
-        <Menu doScroll={doScroll} />
+        <Menu />
       </div>
     </HomeDiv>
   );

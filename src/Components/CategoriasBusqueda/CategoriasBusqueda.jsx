@@ -93,6 +93,7 @@ const CategoriasBusqueda = ({ doScroll }) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           type="text"
+          placeholder="Ej: simples"
         />
         <Button onClick={(e) => handleSubmit(e, value)}>Buscar</Button>
       </Form>

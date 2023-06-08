@@ -22,9 +22,9 @@ const Home = () => {
     <HomeDiv>
       <h1>
         {usuarioAut && usuarioAut.username ? (
-          <>Bienvenido {usuarioAut.username} a Best Burguers LP!</>
+          <>¡Estamos encantados de tenerte {usuarioAut.username} en Best Burguers LP!</>
         ) : (
-          <>Bienvenido a Best Burguers LP!</>
+          <>¡Estamos encantados de tenerte en Best Burguers LP!</>
         )}
       </h1>
       <PortadaHome>

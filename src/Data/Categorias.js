@@ -1,6 +1,7 @@
 import hamburguesaClásica from '../../src/Assets/Others/simples.png';
 import hamburguesaDoble from '../../src/Assets/Others/dobles.png';
 import hamburguesaPequeños from '../../src/Assets/Others/pequeños.png';
+import hamburguesaVeggie from '../../src/Assets/Images/hamburguesa-vegana.png';
 
 const CategoriasTodas = [
     {
@@ -23,7 +24,7 @@ const CategoriasTodas = [
     },
     {
         id:4,
-        img: undefined,
+        img: hamburguesaVeggie,
         nombre: 'Veggie',
         categoria: 'Veggie'
     }

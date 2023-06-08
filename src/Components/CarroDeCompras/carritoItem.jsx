@@ -31,6 +31,7 @@ const ImgSpanP = styled.div`
   justify-content: center;
   gap: 10px;
 `;
+
 const DivSpanYBtn = styled.div`
   display: flex;
   align-items: center;
@@ -38,8 +39,8 @@ const DivSpanYBtn = styled.div`
   gap: 5px;
   text-align: center;
   button{
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
     border-radius: 8px;
   }
 `;
@@ -59,9 +60,6 @@ const CarritoItem = ({ id, nombre, precio, categoria, desc, img, cantidad }) => 
     }
   };
 
-
-  
- 
 
   return (
     <>

@@ -25,7 +25,6 @@ const CarritoDiv = styled.div`
   min-height: 250px;
   max-height: calc(100vh - 6rem);
   gap: 10px;
-  
 
   padding: 2rem;
   //background-color: var(--gray-bg);
@@ -74,9 +73,22 @@ const ItemsDiv = styled.div`
   height: 90%;
 `;
 
+const BtnFinaizar = styled.button`
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 const CarritoDeCompras = () => {
   const arraydecarrito = useSelector((state) => state.carrito.itemsDelCarrito);
-  //console.log(arraydecarrito);
   const dispatch = useDispatch();
   const { itemsDelCarrito, costoDeEnvio, hidden } = useSelector(
     (state) => state.carrito
@@ -145,9 +157,9 @@ const CarritoDeCompras = () => {
           <p>Envio: ${costoDeEnvio}</p>
           <span>-------</span>
           <span>Total:${precioTotal + costoDeEnvio}</span>
-          <button disabled={carritoVacio} onClick={finalizarLaCompra}>
+          <BtnFinaizar disabled={carritoVacio} onClick={finalizarLaCompra}>
             Finalizar compra
-          </button>
+          </BtnFinaizar>
         </CarritoDiv>
       )}
     </>

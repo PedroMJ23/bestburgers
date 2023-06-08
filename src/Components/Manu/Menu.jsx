@@ -14,6 +14,7 @@ const DivMenuPadre = styled.div`
   flex-wrap: wrap;
   height: 100%;
   margin-top: 60px;
+  margin-bottom: 10px;
 
 `
 

@@ -5,7 +5,7 @@ export const HomeDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 60px auto;
+  margin: 70px auto;
   h1 {
     margin: 10px auto;
   }
@@ -24,14 +24,12 @@ export const PortadaHome = styled.div`
   gap: 80px;
   width: 95%;
   
-
   margin: 20px auto;
   @media only screen and (max-width: 767px) {
     gap: 10px;
     flex-direction: column;
     text-align: center;
-    
-    
+        
   }
 `;
 
@@ -53,6 +51,7 @@ export const TextHome = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 20px;
 
   flex-direction: column;
 

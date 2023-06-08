@@ -40,7 +40,7 @@ const SpanBtn = styled.div`
 
 const Btns = styled.button`
   padding: 5px 10px;
-  border: none;
+  border: 1px solid #333;
   border-radius: 4px;
   background-color: #007bff;
   color: #fff;

@@ -4,7 +4,7 @@ export const ButtonsDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3px;
+  margin: 10px;
   gap: 25px;
   button{
     padding: 5px;

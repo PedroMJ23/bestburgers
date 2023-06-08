@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { styled } from "styled-components";
 import { añadirAlCarrito } from "../../Redux/carrito/carritoSlice";
 
+
 const CardMenu = styled.div`
   display: flex;
   align-items: center;
@@ -23,9 +24,10 @@ const CardMenu = styled.div`
 `;
 const ImgCat = styled.img`
   width: 250px;
-  height: auto;
+  height: 130px;
   border-radius: 8px;
   background-color: blue;
+  
   @media only screen and (max-width: 767px) {
     height: 100px;
     width: 180px;
@@ -39,7 +41,7 @@ const SpanBtn = styled.div`
 `;
 const Btns = styled.button`
   padding: 5px 10px;
-  border: none;
+  border: 1px solid #333;
   border-radius: 4px;
   background-color: #007bff;
   color: #fff;

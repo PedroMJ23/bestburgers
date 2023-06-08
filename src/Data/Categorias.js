@@ -6,8 +6,8 @@ const CategoriasTodas = [
     {
         id:1,
         img:hamburguesaClásica,
-        nombre: 'Clásicas',
-        categoria: 'Clásicas'
+        nombre: 'Simples',
+        categoria: 'Simples'
     },
     {
         id:2,
@@ -18,8 +18,14 @@ const CategoriasTodas = [
     {
         id:3,
         img:hamburguesaPequeños,
-        nombre: 'Pequeños',
-        categoria: 'Pequeños'
+        nombre: 'Peques',
+        categoria: 'Peques'
+    },
+    {
+        id:4,
+        img: undefined,
+        nombre: 'Veggie',
+        categoria: 'Veggie'
     }
 
 ]

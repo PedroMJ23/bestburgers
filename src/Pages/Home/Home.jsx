@@ -6,7 +6,6 @@ import Recomendados from "../../Components/Recomendados/Recomendados";
 import CategoriasBusqueda from "../../Components/CategoriasBusqueda/CategoriasBusqueda";
 import { useSelector } from "react-redux";
 
-
 const Home = () => {
   const productRef = useRef();
 
@@ -18,21 +17,15 @@ const Home = () => {
   };
 
   const usuarioAut = useSelector((state) => state.user.userAut);
-  
 
   return (
     <HomeDiv>
       <h1>
-        
         {usuarioAut && usuarioAut.username ? (
-          <>
-           Bienvenido {usuarioAut.username} a Best Burguers LP!
-          </>
-        ) :
-        <>
-           Bienvenido  a Best Burguers LP!
-          </>
-        }
+          <>Bienvenido {usuarioAut.username} a Best Burguers LP!</>
+        ) : (
+          <>Bienvenido a Best Burguers LP!</>
+        )}
       </h1>
       <PortadaHome>
         <ImgHome
@@ -43,22 +36,14 @@ const Home = () => {
         <TextHome>
           <h3>Tenemos la hamburguesa que buscas!</h3>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-            praesentium temporibus, minima error impedit unde blanditiis
-            voluptatibus quis maiores odio placeat repellat provident? Tempore,
-            doloribus! Nobis beatae eaque inventore neque! Cupiditate iste nobis
-            provident quae vel officiis eligendi nihil eos ut facilis
-            praesentium, libero, eveniet voluptas ullam earum quidem quia quis
-            deleniti, totam dolorum non quos saepe. Odit, asperiores quas! A
-            aliquid tempora esse nostrum dolores fuga illo officiis pariatur
-            provident, cum accusamus id ea cumque autem perspiciatis nobis animi
-            odio eum itaque neque exercitationem vel recusandae quaerat! Dicta,
-            consequuntur. Fuga dolor minus sit ea voluptas? Sint qui quam
-            blanditiis dicta dolor, eos quos libero rem? Iusto eum culpa non
-            quae ab in? Pariatur esse saepe explicabo maxime, animi nihil! Ea
-            tempore maxime ad ex voluptates harum quia sunt, aspernatur a? Unde,
-            porro. Sunt ut molestias harum laboriosam error eius culpa non
-            facilis, modi, cum et magnam tempora rerum molestiae.
+            Disfruta de nuestras deliciosas hamburguesas: simples, dobles, para
+            niños y veggies. En nuestro menú encontrarás una amplia variedad de
+            opciones que se adaptan a todos los gustos. Nuestras hamburguesas
+            están hechas con ingredientes frescos y de alta calidad para
+            garantizar el mejor sabor y satisfacción. Ya sea que prefieras una
+            hamburguesa clásica y sencilla o una opción más elaborada, estamos
+            seguros de que encontrarás la hamburguesa perfecta para ti. ¡Ven y
+            prueba nuestras creaciones únicas y deliciosas! ¡Te esperamos!
           </p>
         </TextHome>
       </PortadaHome>
@@ -69,7 +54,7 @@ const Home = () => {
 
       <Categorias />
 
-      <div ref={productRef} >
+      <div ref={productRef}>
         <Menu />
       </div>
     </HomeDiv>

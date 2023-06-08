@@ -11,7 +11,6 @@ const CardMenu = styled.div`
   width: 300px;
   height: 250px;
   border-radius: 8px;
-  //background-color:#8E44AD ;
   border: 1px solid black;
   gap: 10px;
   margin: 10px;
@@ -21,6 +20,7 @@ const CardMenu = styled.div`
     width: 280px;
   }
 `;
+
 const ImgCat = styled.img`
   width: 250px;
   height: 150px;
@@ -38,6 +38,20 @@ const SpanBtn = styled.div`
   justify-content: space-around;
 `;
 
+const Btns = styled.button`
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
 const MenuItem = ({ id, nombre, precio, categoria, desc, img }) => {
   const dispatch = useDispatch();
 
@@ -48,10 +62,9 @@ const MenuItem = ({ id, nombre, precio, categoria, desc, img }) => {
       </div>
       <div>
         <ImgCat src={img} alt="imgCat" />
-        {/* <p>{desc}</p> */}
         <SpanBtn>
           <span>ARS {precio}</span>
-          <button
+          <Btns
             onClick={() =>
               dispatch(
                 añadirAlCarrito({ id, nombre, precio, categoria, desc, img })
@@ -59,7 +72,7 @@ const MenuItem = ({ id, nombre, precio, categoria, desc, img }) => {
             }
           >
             Agregar
-          </button>
+          </Btns>
         </SpanBtn>
       </div>
     </CardMenu>

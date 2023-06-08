@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { styled } from "styled-components";
+import { añadirAlCarrito } from "../../Redux/carrito/carritoSlice";
 
 const CardMenu = styled.div`
   display: flex;
@@ -35,8 +37,23 @@ const SpanBtn = styled.div`
   justify-content: space-between;
  
 `;
+const Btns = styled.button`
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 
-const RecomendadosItems = ({ id, nombre, precio, img }) => {
+  &:hover {
+    transform: scale(0.9);
+  }
+`;
+
+const RecomendadosItems = ({ id, nombre, precio, categoria, desc, img }) => {
+  const dispatch = useDispatch();
+
   return (
     <CardMenu>
       <div>
@@ -47,7 +64,15 @@ const RecomendadosItems = ({ id, nombre, precio, img }) => {
 
         <SpanBtn>
           <span>ARS {precio}</span>
-          <button>Agregar</button>
+           <Btns
+            onClick={() =>
+              dispatch(
+                añadirAlCarrito({ id, nombre, precio, categoria, desc, img })
+              )
+            }
+          >
+            Agregar
+          </Btns>
         </SpanBtn>
       </div>
     </CardMenu>

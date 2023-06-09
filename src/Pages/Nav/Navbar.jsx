@@ -34,7 +34,6 @@ const NavbarContainer = styled.nav`
   z-index: 500;
 `;
 
-
 const Icon = styled.img`
   width: 40px;
   height: 40px;
@@ -83,7 +82,7 @@ const MenuItemLogo = styled(Link)`
   color: white;
   align-items: center;
   justify-content: center;
- `  
+`;
 const CartImg = styled.img`
   height: 25px;
   width: 25px;
@@ -142,13 +141,9 @@ const Navbar = () => {
     }
   };
 
-  //const handleLogout = () => {  dispatch(setUserAut(null));  };
-  
-
-  
   return (
     <NavbarContainer>
-      <MenuItemLogo to="/" onClick={hiddenOnClick} >
+      <MenuItemLogo to="/" onClick={hiddenOnClick}>
         <Icon
           src={require("../../Assets/Images/Hamburguesas.jpg")}
           alt="Logo"

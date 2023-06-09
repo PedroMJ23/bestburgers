@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledFooter } from "./FooterCss";
-import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+
 
 const Footer = () => {
   const SocialIcon = ({ icon, link }) => {

@@ -12,6 +12,20 @@ const NotFoundDiv = styled.div`
   color: white;
   height: calc(100vh - 200px);
   gap: 40px;
+  height: 100vh;
+  button{
+    padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+  }
 `;
 
 const Loader = styled.div`

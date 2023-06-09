@@ -1,4 +1,4 @@
-import hamburguesas1 from '../../src/Assets/Images/Hamburguesas.jpg';
+//import hamburguesas1 from '../../src/Assets/Images/Hamburguesas.jpg';
 import hamburguesassimples3 from '../../src/Assets/Images/simple1.jpg';
 import hamburguesassimples2 from '../../src/Assets/Images/simples2jpg';
 import hamburguesassimples1 from '../../src/Assets/Images/simpleconlechuga.jpg';

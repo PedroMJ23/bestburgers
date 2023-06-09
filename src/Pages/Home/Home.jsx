@@ -24,7 +24,7 @@ const Home = () => {
         {usuarioAut && usuarioAut.username ? (
           <>¡Estamos encantados de tenerte {usuarioAut.username} en Best Burguers LP!</>
         ) : (
-          <>¡Estamos encantados de tenerte en Best Burguers LP!</>
+          <>¡Bienvenido a Best Burguers LP!</>
         )}
       </h1>
       <PortadaHome>

@@ -21,8 +21,8 @@ const Home = () => {
   return (
     <HomeDiv>
       <h1>
-        {usuarioAut && usuarioAut.username ? (
-          <>¡Estamos encantados de tenerte {usuarioAut.username} en Best Burgers LP!</>
+        {usuarioAut && usuarioAut.nombre ? (
+          <>¡Estamos encantados de tenerte {usuarioAut.nombre} en Best Burgers LP!</>
         ) : (
           <>¡Bienvenido a Best Burgers LP!</>
         )}

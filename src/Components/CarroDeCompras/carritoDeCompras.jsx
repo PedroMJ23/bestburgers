@@ -6,6 +6,9 @@ import {
   vaciarElCarrito,
   verElCarrito,
 } from "../../Redux/carrito/carritoSlice";
+import { agregarOrden } from "../../Redux/ordenes/ordenesSlice";
+import { Link } from "react-router-dom";
+import axios from "axios"; // Importa Axios
 
 const CarritoDiv = styled.div`
   display: flex;
@@ -56,8 +59,8 @@ const ModalOverlayStyled = styled.div`
   height: 100vh;
   margin-top: 57px;
 
-  ${({ isHidden }) =>
-    !isHidden &&
+  ${({ ishidden }) =>
+    !ishidden &&
     css`
       backdrop-filter: blur(4px);
     `}
@@ -73,7 +76,8 @@ const ItemsDiv = styled.div`
   height: 90%;
 `;
 
-const BtnFinaizar = styled.button`
+
+const BtnLink = styled(Link)`
   padding: 5px 10px;
   border: 1px solid #333;
   border-radius: 4px;
@@ -81,10 +85,17 @@ const BtnFinaizar = styled.button`
   color: #fff;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  &:disabled {
+      background-image: none;
+      cursor: not-allowed;
 
-  &:hover {
-    transform: scale(0.9);
-  }
+      &:hover {
+        background-image: url("../../Assets/Others/prohibido.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 20px 20px;
+      }
+    }
 `;
 
 const CarritoDeCompras = () => {
@@ -93,6 +104,9 @@ const CarritoDeCompras = () => {
   const { itemsDelCarrito, costoDeEnvio, hidden } = useSelector(
     (state) => state.carrito
   );
+ 
+  //const ordenEnStore = useSelector((state) => state.ordenes);
+  const usuarioAut = useSelector((state) => state.user.userAut);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
@@ -118,22 +132,60 @@ const CarritoDeCompras = () => {
   );
 
   const carritoVacio = arraydecarrito.length === 0;
+  
+  const finalizarLaCompra =async () => {
+    // console.log(usuarioAut)
+    if (!usuarioAut) {
+      alert("Debes registrarte para poder efectuar la compra!");
+      dispatch(verElCarrito());
+      return;
+    }
 
-  const finalizarLaCompra = () => {
     const confirmarCompra = window.confirm("¿Desea finalizar la compra?");
-    if (confirmarCompra) {
+
+    if (confirmarCompra && usuarioAut) {
+      const ordenGenerada = {
+        usuario: usuarioAut.email,
+        items: arraydecarrito,
+        total: precioTotal + costoDeEnvio,
+        // Puedes agregar más propiedades aquí si es necesario
+      };
+      try {
+        const response = await axios.post(
+          "https://mydatabbase01.vercel.app/ordenes", 
+          ordenGenerada
+        );
+        //console.log('ORDEN GENERADA DESDE EL FRONT', ordenGenerada)
+
+        if (response.status === 200) {
+          dispatch(agregarOrden(ordenGenerada));
+          //alert("Has generado tu orden y se ha guardado en la API.");
+        } else {
+          //alert("Hubo un problema al guardar la orden en la API.");
+        }
+      } catch (error) {
+        console.error("Error al hacer la solicitud:", error);
+        alert("Hubo un error al guardar la orden en la API.");
+      }
+
+      //console.log(ordenEnStore);
+      alert("has generado tu orden!");
+
+      /*
       dispatch(vaciarElCarrito());
+      
       alert("Gracias por tu compra!");
+      */
     }
     dispatch(verElCarrito());
+    dispatch(vaciarElCarrito());
+      
   };
-
-  const usuarioAut = useSelector((state) => state.user.userAut);
 
   return (
     <>
       {!hidden && (
-        <ModalOverlayStyled onClick={handleOverlayClick} isHidden={hidden} />
+        <ModalOverlayStyled onClick={handleOverlayClick} ishidden={hidden} />
       )}
       {!hidden && (
         <CarritoDiv onClick={() => dispatch(verElCarrito())}>
@@ -157,9 +209,11 @@ const CarritoDeCompras = () => {
           <p>Envio: ${costoDeEnvio}</p>
           <span>-------</span>
           <span>Total:${precioTotal + costoDeEnvio}</span>
-          <BtnFinaizar disabled={carritoVacio} onClick={finalizarLaCompra}>
+          <BtnLink disabled={carritoVacio} to={usuarioAut ? "ordenes" : "register"}  onClick={finalizarLaCompra}>
             Finalizar compra
-          </BtnFinaizar>
+          </BtnLink>
+          
+          
         </CarritoDiv>
       )}
     </>

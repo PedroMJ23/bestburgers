@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserAut } from "../../Redux/users/usersSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -12,7 +13,6 @@ const LoginContainer = styled.div`
   background-color: #6687a9;
   color: white;
   margin-top: 60px;
-  //z-index: -1;
 `;
 
 const LoginForm = styled.form`
@@ -57,6 +57,11 @@ const LoginButton = styled.button`
   cursor: pointer;
 `;
 
+const RegisterLink = styled.span`
+  color: #00aaff; /* Color que combine con la página */
+  cursor: pointer;
+  text-decoration: underline;
+`;
 
 const LoginFormContainer = () => {
   const dispatch = useDispatch();
@@ -64,65 +69,92 @@ const LoginFormContainer = () => {
   const userAut = useSelector((state) => state.user.userAut);
 
   const [formData, setFormData] = useState({
-    username: "",
-    password: ""
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-if(!formData.username || !formData.password){
-  alert('Debes rellenar todos los campos')
-}else{
-  dispatch(setUserAut(formData));
-}
-   
+    if (!formData.email || !formData.password) {
+      alert("Debes rellenar todos los campos");
+    } else {
+      try {
+        const response = await axios.post(
+          "https://mydatabbase01.vercel.app/users/login",
+          formData
+        ); 
+        const user = response.data;
+        
+        console.log("LA RESPUESTA DEL SERVER:", user);
+        // Los datos del usuario recién creado
+        const usuarioFInal = {
+          nombre: user.user.nombre,
+          email: user.user.email,
+          password: user.user.password,
+        };
+        dispatch(setUserAut(usuarioFInal));
+        console.log("Los datos subidos al servidor:", user);
+        navigate("/");
+        // Lógica adicional de redirección o acciones
+      } catch (error) {
+        console.error("Error al buscar el usuario:", error);
+        alert("Debes registrarte!")
+      }
+      // dispatch(setUserAut(formData));
+    }
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-       if (userAut) {
+    if (userAut) {
       navigate("/");
     }
   }, [navigate, userAut]);
 
+  const handleRegisterClick = () => {
+    navigate("/register"); // Redirecciona al formulario de registro
+  };
+
   return (
     <LoginForm onSubmit={handleSubmit}>
       <h2 style={{ fontSize: "2rem", marginBottom: "30px" }}>Iniciar Sesión</h2>
-      <LoginLabel htmlFor="username" style={{ fontSize: "1.2rem" }}>
-        Usuario:
+      <LoginLabel htmlFor="email" style={{ fontSize: "1.2rem" }}>
+        Email:
       </LoginLabel>
       <LoginInput
         type="text"
-        id="username"
-        name="username"
-        value={formData.username}
-        placeholder="Ingresa tu nombre de usuario"
+        id="email"
+        name="email"
+        value={formData.email}
+        placeholder="Ingresa tu dirección de email"
         onChange={handleChange}
       />
 
-<LoginLabel htmlFor="password" style={{ fontSize: "1.2rem" }}>
-  Password:
-</LoginLabel>
-<LoginInput
-  type="password"
-  id="password"
-  name="password"
-  value={formData.password}
-  placeholder="Ingresa tu contraseña"
-  onChange={handleChange}
-/>
+      <LoginLabel htmlFor="password" style={{ fontSize: "1.2rem" }}>
+        Password:
+      </LoginLabel>
+      <LoginInput
+        type="password"
+        id="password"
+        name="password"
+        value={formData.password}
+        placeholder="Ingresa tu contraseña"
+        onChange={handleChange}
+      />
 
-<LoginButton type="submit" >Login/Registro</LoginButton>
-
-
-</LoginForm>
+      <LoginButton type="submit">Login</LoginButton>
+      <p style={{ textAlign: "center" }}>
+        ¿No te registraste todavía? Hacelo desde{" "}
+        <RegisterLink onClick={handleRegisterClick}>aquí</RegisterLink>
+      </p>
+    </LoginForm>
   );
 };
 

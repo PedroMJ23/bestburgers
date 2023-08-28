@@ -21,10 +21,27 @@ export const eliminarProductoDelCarrito = (itemDelCarro, id) =>{
     }
     return itemDelCarro.filter( item => item.id !== productoAQuitar?.id)
 }
+/*
+  export const resetCostoDeEnvio = (itemDelCarro, costoDeEnvio) =>{
+      if(itemDelCarro.length === 1 && itemDelCarro[0].cantidad === 1){
+          return 0;
 
-export const resetCostoDeEnvio = (itemDelCarro, costoDeEnvio) =>{
-    if(itemDelCarro.length === 1 && itemDelCarro[0].cantidad === 1){
-        return 0;
-
+      }
+  }
+  */
+  /*
+  export const resetCostoDeEnvio = (itemsDelCarrito, costoDeEnvio) => {
+    if (!itemsDelCarrito.length ) {
+      return 0; // Si no hay elementos en el carrito, el costo de envío es 0
     }
-}
+  
+    return costoDeEnvio;
+  };
+  */
+  export const resetCostoDeEnvio = (itemDelCarro, costoDeEnvio) => {
+    if (itemDelCarro.length === 1 && itemDelCarro[0].cantidad === 1) {
+      return 0;
+    }
+    return costoDeEnvio; // Retorna el costo original si no se cumple la condición
+  };
+  

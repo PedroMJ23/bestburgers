@@ -168,6 +168,11 @@ const Navbar = () => {
             <IconLogIn src={require("../../Assets/Images/acceso.png")} alt="" />
           </MenuItem>
         )}
+        {userAut && (
+          <MenuItem to="/ordenes" onClick={hiddenOnClick}>
+            Órdenes
+          </MenuItem>
+        )}
 
         <MenuItem onClick={() => dispatch(verElCarrito())}>
           <CartImg

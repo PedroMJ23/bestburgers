@@ -190,8 +190,8 @@ const CarritoDeCompras = () => {
       {!hidden && (
         <CarritoDiv onClick={() => dispatch(verElCarrito())}>
           <h3>
-            {usuarioAut && usuarioAut.username ? (
-              <>Tus compras {usuarioAut.username}:</>
+            {usuarioAut && usuarioAut.nombre ? (
+              <>Tus compras {usuarioAut.nombre}:</>
             ) : (
               <>Tus compras:</>
             )}

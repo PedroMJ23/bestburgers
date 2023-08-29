@@ -49,6 +49,9 @@ const IconLogIn = styled.img`
 const Menu = styled.ul`
   display: flex;
   list-style: none;
+  @media only screen and (max-width: 767px) {
+   margin-left: auto;
+  }
 `;
 
 const MenuItem = styled(Link)`
@@ -82,6 +85,9 @@ const MenuItemLogo = styled(Link)`
   color: white;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 const CartImg = styled.img`
   height: 25px;

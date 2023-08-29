@@ -152,7 +152,7 @@ const CarritoDeCompras = () => {
       };
       try {
         const response = await axios.post(
-          "https://mydatabbase01.vercel.app/ordenes", 
+          "https://mydb01.vercel.app/ordenes", 
           ordenGenerada
         );
         //console.log('ORDEN GENERADA DESDE EL FRONT', ordenGenerada)

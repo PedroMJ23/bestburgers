@@ -89,14 +89,14 @@ const LoginFormContainer = () => {
         const response = await axios.post(`https://mydb01.vercel.app/users/login`, formData);
         const user = response.data;
         
-        console.log("LA RESPUESTA DEL SERVER:", user);
+        //console.log("LA RESPUESTA DEL SERVER:", user);
         const usuarioFInal = {
           nombre: user.user.nombre,
           email: user.user.email,
           password: user.user.password,
         };
         dispatch(setUserAut(usuarioFInal));
-        console.log("Los datos subidos al servidor:", user);
+        //console.log("Los datos subidos al servidor:", user);
         navigate("/");
       } catch (error) {
         console.error("Error al buscar el usuario:", error);

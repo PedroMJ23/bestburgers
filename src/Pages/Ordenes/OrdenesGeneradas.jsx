@@ -117,9 +117,9 @@ const OrdenRealizada = () => {
         ordenesEnStore.map((orden) => (
           <OrdenRealizadaItem key={orden.id}>
             <h3 style={{ fontSize: "1.5rem", marginBottom: "10px" }}>
-              Orden ID: {orden._id}
+            Usuario: {orden.usuario} 
             </h3>
-            <p style={{ fontSize: "1.2rem" }}>Usuario: {orden.usuario}</p>
+            <p style={{ fontSize: "1.2rem" }}>Orden ID: {orden._id}</p>
             <p style={{ fontSize: "1.2rem" }}>Total: ${orden.total}</p>
             <h4 style={{ fontSize: "1.3rem", marginTop: "15px" }}>Productos:</h4>
             <ul style={{ fontSize: "1.2rem", textAlign: "left" }}>

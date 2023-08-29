@@ -86,13 +86,10 @@ const LoginFormContainer = () => {
       alert("Debes rellenar todos los campos");
     } else {
       try {
-        const response = await axios.post(`https://mydb01.vercel.app/users/login`,
-          formData
-        ); 
+        const response = await axios.post(`https://mydb01.vercel.app/users/login`, formData);
         const user = response.data;
         
         console.log("LA RESPUESTA DEL SERVER:", user);
-        // Los datos del usuario recién creado
         const usuarioFInal = {
           nombre: user.user.nombre,
           email: user.user.email,
@@ -101,12 +98,14 @@ const LoginFormContainer = () => {
         dispatch(setUserAut(usuarioFInal));
         console.log("Los datos subidos al servidor:", user);
         navigate("/");
-        // Lógica adicional de redirección o acciones
       } catch (error) {
         console.error("Error al buscar el usuario:", error);
-        alert("Debes registrarte!")
+        if (error.response && error.response.status === 400 && error.response.data.msg === "Invalid password!") {
+          alert("Contraseña inválida");
+        } else {
+          alert("Error al buscar el usuario. Debes registrarte.");
+        }
       }
-      // dispatch(setUserAut(formData));
     }
   };
 

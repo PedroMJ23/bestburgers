@@ -82,11 +82,16 @@ const Register = () => {
         const response = await axios.post(`https://mydb01.vercel.app/users`, formData); // Realiza la solicitud POST al endpoint /api/register en tu servidor
         const user = response.data; // Los datos del usuario recién creado
         dispatch(setUserAut(user));
-        console.log("Los datos subidos al servidor:",user)
+        //console.log("Los datos subidos al servidor:",user)
         navigate("/");
         // Lógica adicional de redirección o acciones
-      } catch (error) {
-        console.error("Error al registrar el usuario:", error);
+      } catch (error)  {
+        if (error.response && error.response.status === 400) {
+          // Si el error es debido a que el usuario ya existe, mostrar el mensaje de alerta
+          alert("El usuario ya tiene una cuenta!");
+        } else {
+          console.error("Error al registrar el usuario:", error);
+        }
       }
     }
   };

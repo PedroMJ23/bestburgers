@@ -58,7 +58,7 @@ const OrdenRealizada = () => {
       try {
         if (usuarioAut) {
           const response = await axios.get(
-            `https://mydatabbase01.vercel.app/ordenes/${usuarioAut.email}`
+            `https://mydb01.vercel.app/ordenes/${usuarioAut.email}`
           );
 
           if (response.status === 200) {
@@ -78,7 +78,7 @@ const OrdenRealizada = () => {
   const handleEliminarOrden = async (ordenId) => {
     try {
       const response = await axios.delete(
-        `https://mydatabbase01.vercel.app/ordenes/${ordenId}`
+        `https://mydb01.vercel.app/ordenes/${ordenId}`
       );
 
       if (response.status === 200) {

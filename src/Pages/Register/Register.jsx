@@ -79,7 +79,7 @@ const Register = () => {
       alert("Debes rellenar todos los campos");
     } else {
       try {
-        const response = await axios.post(`https://mydatabbase01.vercel.app/users`, formData); // Realiza la solicitud POST al endpoint /api/register en tu servidor
+        const response = await axios.post(`https://mydb01.vercel.app/users`, formData); // Realiza la solicitud POST al endpoint /api/register en tu servidor
         const user = response.data; // Los datos del usuario recién creado
         dispatch(setUserAut(user));
         console.log("Los datos subidos al servidor:",user)
